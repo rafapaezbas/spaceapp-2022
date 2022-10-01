@@ -1,10 +1,11 @@
 const crypto = require('../src/crypto.js')
 const test = require('brittle')
 
-test('generate key pair', async ({ ok }) => {
+test.solo('generate key pair', async ({ ok }) => {
     const keyPair = crypto.signKeyPair()
     ok(keyPair.pk)
     ok(keyPair.sk)
+    console.log(keyPair.sk.toString('hex'))
 })
 
 test('sign and verify', async ({ ok }) => {

@@ -16,7 +16,8 @@ const testnet = {
 
 const ECPair = ECPairFactory(ecc)
 
-const txHex = (keyPair, signature, txid, utxo) => {
+const txHex = (secretKey, signature, txid, utxo) => {
+    const keyPair = ECPair.fromPrivateKey(Buffer.from(secretKey, 'hex'))
     const payment = bitcoin.payments.p2pkh({ network: testnet, pubkey: keyPair.publicKey })
     const inputData = {
         hash: txid,
