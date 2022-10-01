@@ -5,12 +5,42 @@
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <title>Hello World!</title>
+
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-<h1>Hello World!</h1>
-We are using Node.js <span id="node-version"></span>,
-Chromium <span id="chrome-version"></span>,
-and Electron <span id="electron-version"></span>.
+
+<div class="main-form">
+    <div class="form-row">
+        <label for="input-signature-pk">Signature Private Key</label>
+        <input id="input-signature-pk" type="text"/>
+    </div>
+
+    <div class="form-row">
+        <label for="input-bitcoin-pk">Bitcoin Private Key</label>
+        <input id="input-bitcoin-pk" type="text"/>
+    </div>
+
+    <div class="form-row">
+        <label for="input-tx-id">Signature Private Key</label>
+        <input id="input-tx-id" type="text"/>
+    </div>
+
+    <div class="form-row">
+        <label for="input-tx-hex">Bitcoin Private Key</label>
+        <input id="input-tx-hex" type="text"/>
+    </div>
+
+    <div class="form-row">
+        <button id="select-file-btn">Select Your Document</button>
+        <span id="selected-file"></span>
+    </div>
+
+    <div class="form-row">
+        <button id="submit-document">Submit Document</button>
+    </div>
+</div>
+
 </body>
 
 <script src="index.js"></script>

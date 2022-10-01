@@ -1,0 +1,21 @@
+.main-form {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20%;
+    margin-left: 20%;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+.form-row input {
+    border-radius: 5px;
+    border-style: solid;
+}
+
+.invalid-field input {
+    border-color: darkred;
+}

@@ -1,16 +1,24 @@
-const { app, BrowserWindow } = require('electron')
-const path = require('path')
+const remoteMain = require('@electron/remote/main')
+const {app, BrowserWindow} = require('electron')
 
-function createWindow () {
+function createWindow() {
+
+    remoteMain.initialize();
+
     const win = new BrowserWindow({
         width: 800,
         height: 600,
         webPreferences: {
+            plugins: true,
             nodeIntegration: true,
             contextIsolation: false,
-            enableRemoteModule: true
+            backgroundThrottling: false,
+            nativeWindowOpen: false,
+            webSecurity: false
         }
     })
+
+    remoteMain.enable(win.webContents);
 
     win.loadFile('./src/client/index.html')
 }
