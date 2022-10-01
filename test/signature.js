@@ -14,3 +14,9 @@ test('sign and verify', async ({ ok }) => {
     const verification = crypto.verify(signature, blob, keyPair.pk)
     ok(verification)
 })
+
+test('checksum', async ({ ok }) => {
+    const filePath = ('/tmp/test.txt')
+    const out = await crypto.checksum(filePath)
+    ok(out)
+})

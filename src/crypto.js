@@ -1,4 +1,5 @@
 const sodium = require('sodium-native')
+const { readFile } = require('fs/promises')
 
 const signKeyPair = () => {
     const pk = Buffer.alloc(sodium.crypto_sign_PUBLICKEYBYTES)
@@ -19,4 +20,11 @@ const verify = (signature, message, pk) => {
   return sodium.crypto_sign_verify_detached(signature, message, pk)
 }
 
-module.exports = { signKeyPair, sign, verify }
+const checksum = async (filePath) => {
+    const out = Buffer.alloc(64)
+    const file = await readFile(filePath)
+    sodium.crypto_generichash(out, file)
+    return out
+}
+
+module.exports = { signKeyPair, sign, verify, checksum }
