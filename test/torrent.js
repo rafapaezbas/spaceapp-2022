@@ -1,6 +1,9 @@
 const test = require('brittle')
-const createTorrent = require('../src/torrent')
+const { seed } = require('../src/torrent')
 
-test('generate torrent', async ({ ok }) => {
-    const torrent =
+test('seed torrent', async ({ ok, teardown }) => {
+    const { torrent, client } = await seed('/tmp/test.txt')
+    teardown(async () => {
+        await client.destroy()
+    ok(torrent)
 })

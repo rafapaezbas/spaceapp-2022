@@ -1,6 +1,14 @@
 const createTorrent = require('create-torrent')
-const { promesify } = require('util')
+const WebTorrent = require('webtorrent')
+const { promisify } = require('util')
 
-module.exports = createTorrent = (path) => {
-    return promesify(createTorrent)(path)
+const seed = (file) => {
+    return new Promise((resolve, reject) => {
+        const client = new WebTorrent()
+        client.seed(file, function (torrent) {
+            resolve({ torrent, client })
+        })
+    })
 }
+
+module.exports = { seed }
