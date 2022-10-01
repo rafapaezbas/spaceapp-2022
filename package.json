@@ -12,6 +12,7 @@
   "dependencies": {
     "bitcoinjs-lib": "^6.0.2",
     "ecpair": "^2.0.1",
+    "electron": "^21.0.1",
     "tiny-secp256k1": "^2.2.1"
   }
 }
