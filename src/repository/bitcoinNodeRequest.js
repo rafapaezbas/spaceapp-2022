@@ -9,18 +9,15 @@ const headers = {
 
 function requestKey(method, params) {
     let data = {
+        'jsonrpc': '2.0',
         'method': method,
         'params': params,
         'id': 'getblock.io'
     }
 
-    axios.post('https://btc.getblock.io/testnet/', {
+
+    return axios.post('https://btc.getblock.io/testnet/', {
         headers: headers,
         data: data
     })
-        .then((response) => {
-            return response
-        }, (error) => {
-            console.log(error);
-        })
 }
