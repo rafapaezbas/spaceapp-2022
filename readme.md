@@ -1,47 +1,47 @@
 # Spaceapp challenge 2022 - Measuring open science
 
-## Contexto
+## Context
 
-### ¿Qué es la "Ciencia abierta"?
+### What is "Open Science"?
 
-Ciencia abierta (Open Science) es un término de adopción reciente referido a un nuevo enfoque en el modo de colaboración y distribución de la investigación científica y sus conclusiones. La idea es promover el acceso abierto a la producción científica incluyendo publicaciones, datos, metodología y cualquier otra información que pueda ser útil en el avance científico.
+Open science is a recently adopted term referring to a new approach in the way of collaboration and distribution of scientific research and its conclusions. The idea is to promote open access to scientific production including publications, data, methodology and any other information that may be useful in scientific advancement.
 
-### ¿Cómo sé si una producción científica es "Ciencia Abierta"?
+### How do I know if a scientific production is "Open Science"?
 
-Tradicionalmente, se han utilizado medidas como el número de citas, la entidad que publica la investigación o el número de artículos publicados para evaluar/medir la calidad de un aporte científico. Actualmente están surgiendo nuevos criterios que miden el impacto, por ejemplo el impacto en redes sociales. 
+Traditionally, measures such as the number of citations, the entity that publishes the research or the number of published articles have been used to evaluate/measure the quality of a scientific contribution. New criteria are currently emerging that measure the impact, for example the impact on social networks.
 
-Un estándar con bastante aceptación en la actualidad es _Transparency and Openness Promotion (TOP)_ promovido por la asociación [Center For Open Science](https://www.cos.io/), una iniciativa no gubernamental que aboga por el apoyo a la apertura de la investigación. 
+A currently widely accepted standard is _Transparency and Openness Promotion (TOP)_ promoted by the association [Center For Open Science](https://www.cos.io/), a non-governmental initiative that advocates for the support of the opening of the investigation.
 
-El criterio _TOP_ se basa en 6 apartados:
+The _TOP_ criterion is based on 6 sections:
 
-- Estándar de citación: mide la adecuación de las citas de la publicación.
+- Citation standard: measures the adequacy of the citations of the publication.
 
-- Transparencia de datos, método analítico y recursos: mide si el material utilizado durante la investigación está disponible y la facilidad de acceso.
+- Transparency of data, analytical method and resources: it measures whether the material used during the investigation is available and how easy it is to access.
 
-- Transparencia de diseño y análisis: mide la facilidad que tiene el lector de un artículo para seguir el método utilizado y por tanto verificar la conclusiones.
+- Transparency of design and analysis: it measures how easy it is for the reader of an article to follow the method used and therefore verify the conclusions.
 
-- Preregistro de estudios: mide la distribución pública de la investigación previamente a ser publicada por una editorial o revista.
+- Pre-registration of studies: measures the public distribution of research prior to being published by a publisher or magazine.
 
-- Preregistro del plan de análisis: mide la distribución pública del análisis previo a la investigación antes de ser publicada.
+- Pre-registration of the analysis plan: measures the public distribution of the analysis prior to the investigation before being published.
 
-- Réplica: mide el interés y rigurosidad en la publicación de [réplicas de estudios](https://www.enago.com/academy/importance-of-replication-studies/#:~:text=What%20is%20Replication%20of%20a,to%20the%20newly%20collected%20data.).
+- Replication: measures the interest and thoroughness in the publication of [replication studies](https://www.enago.com/academy/importance-of-replication-studies/#:~:text=What%20is%20Replication% 20of%20a,to%20the%20newly%20collected%20data.).
 
-Visita enlace para una descripción mas detallada de los criterios: https://osf.io/9f6gx/wiki/Guidelines/
+Visit link for a more detailed description of the criteria: https://osf.io/9f6gx/wiki/Guidelines/
 
-Además Center For Open Science ofrece una plataforma de administración y publicación de artículos científicos. La plataforma permite a los usuarios el almacenamiento y gestión de la investigación, con especial enfoque el la transparencia del proceso, datos y conclusiones.
+In addition, Center For Open Science offers a platform for the administration and publication of scientific articles. The platform allows users to store and manage research, with a special focus on the transparency of the process, data and conclusions.
 
-Algunas caracterísiticas de la publicación centralizada (como es el caso de la plataforma de Center For Open Science) son:
+Some characteristics of centralized publishing (as is the case of the Center For Open Science platform) are:
 
-1. Las instituciones publicadoras tienen un estatus de confianza que ayuda a dar credibilidad a la autoría de las publicaciones, es decir, si una institución dice que el artículo cientifico con [DOI](https://www.doi.org/) _10.1000/xyz123_ es autoría del investigador con [ORCID](https://es.wikipedia.org/wiki/ORCID) _0000-0000-0000-000X_, la credibilidad de la instititución es la base de la afirmación.
+1. The publishing institutions have a trusted status that helps to give credibility to the authorship of the publications, that is, if an institution says that the scientific article with [DOI](https://www.doi.org/) _10 .1000/xyz123_ is the authorship of the researcher with [ORCID](https://es.wikipedia.org/wiki/ORCID) _0000-0000-0000-000X_, the credibility of the institution is the basis of the statement.
 
-2. La distribución centralizada de los artículos es un único punto de fallo vulnerable a censura, problemas de seguridad o problemas técnicos/económicos.
+2. Centralized distribution of articles is a single point of failure vulnerable to censorship, security issues, or technical/financial issues.
 
-3. El estatus de confianza de la institución permitiría la modificación de publicaciones o censura por parte de la propia institución.
+3. The trusted status of the institution would allow the modification of publications or censorship by the institution itself.
 
-## Propuesta de mejora para la distribución.
+## Improvement proposal for the distribution.
 
-Las mejoras propuestas para la distribución se basan en esquemas de firma digital y suma de verificación (checksum).
-Como esquema de firma digital [Ed25519](https://en.wikipedia.org/wiki/EdDSA) es el más desarrollado actualmente. La idea es simple, cada institución e investigador es identificado con una clave pública que corresponde a una clave privada utilizada para la firma digital. Cualquier usuario puede utilizar la clave pública para la verificación.
+The proposed improvements for distribution are based on digital signature and checksum schemes.
+As a digital signature scheme [Ed25519](https://en.wikipedia.org/wiki/EdDSA) is currently the most developed. The idea is simple, each institution and researcher is identified with a public key that corresponds to a private key used for the digital signature. Any user can use the public key for verification.
 
 ```
 const signable = 'Random_message'
@@ -52,9 +52,9 @@ const signature = ed25519.sign(signable, privateKey)
 const isVerified = ed25519.verify(signable, signature, publicKey) 
 ```
 
-Checksum o suma de verificación es una función hash que transforma cualquier fuente de información es su representación única de 32/64 bits.
+Checksum is the result of a hash function that transforms any data source into its unique 32/64-bit representation.
 
-Sólo estas dos ideas resuelven la questión de autoría verificada! Las instituciones podrían publicar la firma del autor sobre el checksum del artículo científico. 
+Only these two ideas solve the question of verified authorship! The institutions could publish the author's signature on the checksum of the scientific article.
 
 ```
 const publication = readFile('/path/to/article')
@@ -62,17 +62,17 @@ const checksum = hash(publication)
 const signature = ed25519.sign(checksum, investigatorPrivateKey)
 ```
 
-Dado que la clave pública es de dominio público cualquier lector puede verificar que se cumple. La institución tampoco puede modificar el artículo, pues cambiaría el checksum y por tanto, la firma.
+Since the public key is in the public domain, any reader can verify that it is true. The institution cannot modify the article either, as it would change the checksum and therefore the signature.
 
-Pero esto aún deja dos problemas:
+But this still leaves two problems:
 
-1. La institución o un organismo externo podrían simplemente eliminar el artículo. Bloquear el acceso y negar su existencia.
+1. The institution or an external body could simply delete the article. Block access and deny its existence.
 
-2. Tampoco se puede verificar la fecha de publicación, por ejemplo, en una disputa sobre cuál de dos artículos se publicó antes.
+2. The publication date cannot be verified either, for example, in a dispute over which of two articles was published earlier.
 
-Para resolver estos dos problemas se necesita un algoritmo de consenso descentralizado. En la actualidad, el algoritmo más extendido en este campo es _Proof of work_, utilizado por el sistema Bitcoin. Por lo tanto, se puede utilizar la cadena de bloques de bitcoin como fuente de verdad, pues los bloques son inmodificables una vez se añaden a la cadena.
+To solve these two problems, a decentralized consensus algorithm is needed. Currently, the most widespread algorithm in this field is _Proof of work_, used by the Bitcoin system. Therefore, the bitcoin block chain can be used as a source of truth, since the blocks are unchangeable once they are added to the chain.
 
-La idea es añadir información adicional a una transacción o bloque donde se incluya una firma digital:
+The idea is to add additional information to a transaction or block where a digital signature is included:
 
 ```
 const info = {
@@ -85,9 +85,9 @@ const info = {
 const signature = ed25519.sign(info, institutionPrivateKey)
 ```
 
-Si esta firma se incluye en un bloque, es cierto que la entidad se compromote a publicar por un medio concreto (_link_), un artículo concreto (_publicationChecksum_) y atribuye su autoría a un investigador que reconoce la autoría del artículo (_investigatorSignature_).
+If this signature is included in a block, it is true that the entity commits to publish by a specific means (_link_), a specific article (_publicationChecksum_) and attributes its authorship to a researcher who acknowledges the authorship of the article (_investigatorSignature_).
 
-Para añadir la información a una transacción bitcoin puede usarse el operador [OP_RETURN](https://en.bitcoin.it/wiki/OP_RETURN). 
+To add the information to a bitcoin transaction, the operator [OP_RETURN](https://en.bitcoin.it/wiki/OP_RETURN) can be used.
 
 ```
 const data = Buffer.from('signature, 'utf8');
@@ -103,11 +103,12 @@ const psbt = new bitcoin.Psbt({ network: testnet })
 psbt.finalizeAllInputs()
 ```
 
-Además esto da un orden de publicación verificable. Si la firma del artículo A se ha publicado en un bloque anterior al artículo B, es seguro que el artículo A es anterior.
 
-## Consecuencia adicional
+In addition this gives a verifiable publication order. If the signature of article A has been published in an earlier block than article B, it is certain that article A is earlier.
 
-Una consecuencia directa del uso de cadena de bloques es la completa *descentralización* de publicación. Un investigador podría tomar la opción de auto publicar un artículo. Sólo tiene incluir una transacción en la cadena de bloques de la forma:
+## Additional consequence
+
+A direct consequence of using blockchain is the complete *decentralization* of publishing. A researcher could take the option to self-publish an article. You just have to include a transaction in the block chain in the form:
 
 ```
 const info = {
@@ -117,20 +118,18 @@ const info = {
 const signature = ed25519.sign(info, investigatorPrivateKey)
 ```
 
-En esencia usando la cadena de bloques como un registro de propiedad intelectual.
+In essence using the blockchain as a registry of intellectual property.
 
-Ahora el autor puede distribuir su artículo de la forma que crea conveniente y puede probar su autoría y altura de la cadena de bloques en el momento de la publicación.
+Now the author can distribute their article in any way they see fit and can prove their authorship and blockchain height at the time of publication.
 
-Especialmente interesante sería que se distribuyera el artículo por medio de algún protocol de descentralización tal como [BitTorrent](https://es.wikipedia.org/wiki/BitTorrent#DHT), cuyo protocolo es altamente resistente a la censura. Cualquier lector podría verificar que el artículo no ha sido modificado.
+Especially interesting would be if the article were distributed through some decentralization protocol such as [BitTorrent](https://es.wikipedia.org/wiki/BitTorrent#DHT), whose protocol is highly resistant to censorship. Any reader could verify that the article has not been modified.
 
-## Conclusiones
+## Conclusions
 
-Podría añadirse un nuevo criterio para las publicaciones que cumplieran el protocol descrito. Podría hablarse de varios niveles de descentrailzación:
+A new criterion could be added for publications that meet the described protocol. One could speak of various levels of decentralization:
 
-Nivel 1: el investigador y la institución usan el esquema de firma digital.
+Level 1: the researcher and the institution use the digital signature scheme.
 
-Nivel 2: La firma digital está publicada en cadena de bloques.
+Level 2: The digital signature is published on the blockchain.
 
-Nivel 3: El artículo se distribuye de forma descentralizada.
-
-### Fron end
+Level 3: The article is distributed in a decentralized way.
