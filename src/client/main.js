@@ -14,7 +14,8 @@ function createWindow() {
             contextIsolation: false,
             backgroundThrottling: false,
             nativeWindowOpen: false,
-            webSecurity: false
+            webSecurity: false,
+            nodeIntegrationInWorker: true
         }
     })
 

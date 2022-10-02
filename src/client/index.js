@@ -1,3 +1,4 @@
+
 window.onload = () => {
     document.getElementById("select-file-btn").addEventListener("click", onClickSelectFile);
     document.getElementById("submit-document").addEventListener("click", onClickSubmitDocument);
@@ -27,16 +28,15 @@ async function onClickSubmitDocument() {
     const txId = document.getElementById("input-tx-id").value;
     const txHex = document.getElementById("input-tx-hex").value;
 
-
     const crypto = require("./../crypto");
     const fileChecksum = await crypto.checksum(selectedFile);
     const signature = crypto.sign(fileChecksum, Buffer.from(signatureSK, "hex"));
 
-    const bitcoin = require("./../bitcoin");
-    const result = bitcoin.txHex(bitcoinSK, signature, txId, txHex);
+    const worker = new Worker('worker.js');
 
-    console.log(result);
-    alert("zurullo");
+    worker.postMessage([bitcoinSK, signature, txId, txHex])
+    worker.onmessage = (msg) => console.log("!!!!", msg)
+
 }
 
 function showSelectedFile() {
