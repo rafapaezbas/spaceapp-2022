@@ -5,7 +5,6 @@ test.solo('generate key pair', async ({ ok }) => {
     const keyPair = crypto.signKeyPair()
     ok(keyPair.pk)
     ok(keyPair.sk)
-    console.log(keyPair.sk.toString('hex'))
 })
 
 test('sign and verify', async ({ ok }) => {

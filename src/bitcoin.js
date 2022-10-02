@@ -25,7 +25,7 @@ const txHex = (secretKey, signature, txid, utxo) => {
         nonWitnessUtxo: Buffer.from(utxo, 'hex'),
     }
 
-    const data = Buffer.from(signature, 'utf8');
+    const data = Buffer.from(signature, 'hex');
     const embed = bitcoin.payments.embed({ data: [data] });
     const psbt = new bitcoin.Psbt({ network: testnet })
           .addInput(inputData)
@@ -34,6 +34,8 @@ const txHex = (secretKey, signature, txid, utxo) => {
               value: 1000,
           })
           .signInput(0, keyPair)
+
+    psbt.setMaximumFeeRate(7000)
     psbt.finalizeAllInputs()
 
     return psbt.extractTransaction().toHex()

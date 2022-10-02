@@ -1,12 +1,12 @@
 const test = require('brittle')
 const { generateAddress, txHex } = require('../src/bitcoin')
 
-test.('generate new bitcoin address', async ({ ok, teardown }) => {
+test.solo('generate new bitcoin address', async ({ ok, teardown }) => {
     const { keyPair, p2pkh } = await generateAddress()
     ok(p2pkh)
     ok(keyPair)
     console.log(p2pkh.address)
-    console.log("SK", keyPair.getPrivate('hex'))
+    console.log("SK", keyPair.privateKey.toString('hex'))
 })
 
 test('get hex', async ({ ok, teardown }) => {
